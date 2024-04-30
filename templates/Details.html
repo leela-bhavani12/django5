@@ -1,0 +1,132 @@
+<body>
+<style>
+    .container {
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPoYSbUZuEiW5yDmoMls-hQh6bo9pQQAvELin8rqAkDsrQHfqxU0mbufF_kId7oNLV-K4&usqp=CAU.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 930px; /* Adjust the height as needed */
+        margin-bottom: 30px;
+    }
+
+    .form-container {
+    margin: 20px auto;
+        width: 80%;
+        max-width: 600px; /* Adjust the maximum width as needed */
+        background-color:rgb(255, 192, 203,0.5);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .form-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-container label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="number"],
+    .form-container select {
+        width: calc(100% - 22px); /* Adjust the width as needed */
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .form-container input[type="submit"],
+    .form-container input[type="button"],
+    .form-container input[type="reset"] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="form-container">
+        <form method="POST" action="/booknow">
+            {% csrf_token %}
+            <h1>Enter Details</h1>
+            <label for="first_name">FIRST NAME:</label>
+            <input type="text" id="first_name" name="fn">
+
+            <label for="last_name">LAST NAME:</label>
+            <input type="text" id="last_name" name="ln">
+
+            <label for="mobile_number">MOBILE NUMBER:</label>
+            <input type="number" id="mobile_number" name="pn">
+
+            <label for="date_of_birth">DATE OF BIRTH:</label>
+            <input type="date" id="date_of_birth" name="dob">
+
+            <label>GENDER:</label>
+            <input type="radio" id="male" name="gn" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gn" value="female">
+            <label for="female">Female</label>
+            <label for="destination">ENTER DESTINATION:</label>
+            <select id="destination" name="destination">
+                <option value="">select</option>
+                <option value="Gannavaram">Gannavaram</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Goa">Goa</option>
+            </select>
+
+            <label for="day">CHOOSE DAY TO TRAVEL:</label>
+            <select id="day" name="day">
+                <option value="">select</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select>
+
+            <label for="flight_time">FLIGHT TIME:</label>
+            <select id="flight_time" name="flight_time">
+                <option value="">select</option>
+                <option value="12.00-04.00">12.00-04.00</option>
+                <option value="04.00-06.00">04.00-06.00</option>
+                <option value="06.00-10.00">06.00-10.00</option>
+                <option value="10.00-12.00">10.00-12.00</option>
+            </select>
+             <a href="Submit" class="btn btn-primary">Submit</a>
+            <input type="reset" value="Clear">
+
+            <script>
+function validateForm() {
+    var firstName = document.getElementById("first_name").value;
+    var lastName = document.getElementById("last_name").value;
+    var mobileNumber = document.getElementById("mobile_number").value;
+
+    if (firstName === "" || lastName === "") {
+        alert("First name and last name cannot be empty");
+        return false;
+    }
+
+    if (mobileNumber.length < 10) {
+        alert("Mobile number must be at least 10 digits long");
+        return false;
+    }
+
+    // If all validations pass, submit the form
+    document.getElementById("myForm").submit();
+}
+     </script>
+      </body>
+        </form>
+    </div>
+</div>

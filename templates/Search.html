@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% csrf_token %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Your custom CSS -->
+    <style>
+        body {
+            background-image: url('data:image/jpeg;base64,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'); /* Replace with your bag image path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background for readability */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        /* Additional custom styles for form elements */
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="login-container">
+            <h2 class="text-center mb-4">Flight Search</h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="source">From</label>
+                    <input type="text" class="form-control" id="source" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">To</label>
+                    <input type="text" class="form-control" id="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="airline">Preferred Airline</label>
+                    <input type="text" class="form-control" id="airline">
+                </div>
+                <div class="form-group">
+                    <label for="seatingPreference">Preferred Seating</label>
+                    <input type="text" class="form-control" id="seatingPreference">
+                </div>
+                <div class="form-group">
+                    <label for="departureDate">Departure Date</label>
+                    <input type="date" class="form-control" id="departureDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="returnDate">Return Date (if applicable)</label>
+                    <input type="date" class="form-control" id="returnDate">
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Message</label>
+                    <textarea class="form-control" id="message" rows="3"></textarea>
+                </div>
+                <h3 class="sub-heading-agileits">Personal Details</h3>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" required>
+                </div>
+                <div class="form-group">
+                   > <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Search Flights</button>
+            </form>
+        </div>
+    </div>
+    <!-- Include Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

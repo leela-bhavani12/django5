@@ -1,0 +1,97 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    select,
+    input[type="number"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #totalAmount {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<h2>Airline Ticket Booking</h2>
+<form id="bookingForm">
+    <label for="class">Select Class:</label>
+    <select id="class" name="class">
+        <option value="economy">Economy</option>
+        <option value="business">Business</option>
+        <option value="firstclass">First Class</option>
+    </select>
+
+    <label for="passengers">Number of Passengers:</label>
+    <input type="number" id="passengers" name="passengers" min="1" value="1" required>
+
+    <input type="submit" value="Calculate Total">
+    <a href="otp" class="btn btn-primary">Pay </a>
+</form>
+
+<div id="totalAmount"></div>
+
+<script>
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // prevent form submission
+
+        var selectedClass = document.getElementById("class").value;
+        var numberOfPassengers = parseInt(document.getElementById("passengers").value);
+        var ticketPrice;
+
+        // Set ticket price based on selected class
+        switch(selectedClass) {
+            case "economy":
+                ticketPrice = 100;
+                break;
+            case "business":
+                ticketPrice = 200;
+                break;
+            case "firstclass":
+                ticketPrice = 300;
+                break;
+            default:
+                ticketPrice = 0;
+        }
+
+        var totalAmount = ticketPrice * numberOfPassengers;
+
+        document.getElementById("totalAmount").innerHTML = "<p>Total Amount: $" + totalAmount + "</p>";
+    });
+</script>
